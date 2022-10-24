@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>reg</title>
+  <!-- MDB icon -->
+  <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <!-- Material Design Bootstrap -->
+  <link rel="stylesheet" href="css/mdb.min.css">
+  <!-- Your custom styles (optional) -->
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+<?php
+require('connect.php');
+if (isset($_POST['Имя']&& isset($_POST['Пароль']) )){
+  $FirstName = $_POST['username'];
+  $email = $_POST['E-mail'];
+  $Password = $_POST['password'];
+  $query = "INSERT INTO users (username,password,email) VALUES('$FirstName',($email),($Password))";
+  $result = mysqli_query($connection, $query);
+
+  if(result){
+  $smsg = "Все норм";
+}else {
+  $fsmsg = "Не норм"
+}
+
+?>
+
+<form class="text-center border border-light p-5" action="check.php" method="_POST">
+  <?php if(isset($smsg)){ ?><div class="alert alert-success" role="alert"><?php echo $smsg; ?> </div><?php}?>
+    <?php if(isset($fsmsg)){ ?><div class="alert alert-success" role="alert">< ?php echo $fmsg; ?> </div><?php}?>
+
+    <p class="h4 mb-4">Регистрация</p>
+
+    
+
+    <div class="form-row mb-4">
+        <div class="col">
+
+          <input type="text" id="FirstName" name="FirstName" class="form-control" placeholder="Имя" required>
+
+        </div>
+       
+    </div>
+
+    <input type="email" id="Email" name="Email" class="form-control mb-4" placeholder="E-mail" required>
+
+
+    <input type="password" id="Password" name="Password" class="form-control" placeholder="Пароль"  required>
+
+   
+   
+
+
+
+    <button class="btn btn-info my-4 btn-block" type="submit" href="connect.php">Зарегистрироватся</button>
+
+
+
+</form>
+
+</body>
+</html>
